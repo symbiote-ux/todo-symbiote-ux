@@ -1,0 +1,30 @@
+----------------tasks to be done-----------------------------
+
+#Requirements:
+* Create one or more to-do list with a title
+* View all the to-do lists
+* Add an item to a to-do list
+* Delete an item from to-do list
+* Mark an item as done and undone
+* Delete a todo list
+
+
+# DATA Structure : [{Title:'',Body:{task1:'',task2:''}},{},{}]
+
+#setup the environment:
+make directory accordingly
+write tests
+write server to serve files accordingly
+
+
+Work on UI:
+make background 
+add heading
+add bullets points
+design card 
+add a facility to take input from client
+
+#task1 :
+* create a todo list with title
+* save the data 
+* render the page using XMLHttpRequest

@@ -1,0 +1,24 @@
+{
+  "name": "todo-symbiote-ux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/step-batch-7/todo-symbiote-ux.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/step-batch-7/todo-symbiote-ux/issues"
+  },
+  "homepage": "https://github.com/step-batch-7/todo-symbiote-ux#readme",
+  "devDependencies": {
+    "supertest": "^4.0.2"
+  }
+}

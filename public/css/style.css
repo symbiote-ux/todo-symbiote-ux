@@ -1,0 +1,17 @@
+#header {
+  font-size: 15 px;
+  display: flex;
+  justify-content: start;
+  padding: 0px;
+  border-radius: 10px;
+  background-color: rgba(66, 176, 219, 0.7);
+  height: 70px;
+}
+
+#screen {
+  width: 99.5%;
+  height: 770px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: -2px -2px 2px 0.5 px rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
+}
