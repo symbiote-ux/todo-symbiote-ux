@@ -1,4 +1,5 @@
 #screen {
+  font-family: sans-serif;
   width: 99vw;
   min-height: 100vh;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -36,19 +37,22 @@ fieldset {
 }
 
 .box {
-  width: 300px;
+  width: 250px;
   height: auto;
-  margin: 20px auto;
-  padding: 0% 0% 1% 1%;
+  margin: 20px 20px 0px 20px;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .title {
-  /* border: 1px solid black; */
-  /* background-color: springgreen; */
+  margin: 0;
+  padding: 14px 0;
+  text-align: center;
+  border-bottom: 1px solid black;
+  background-color: rgba(66, 176, 219, 0.6);
 }
 
 .content {
-  /* background-color: thistle; */
+  padding: 10px 10px 5px;
 }
