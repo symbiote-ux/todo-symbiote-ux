@@ -9,22 +9,40 @@
 * Delete a todo list
 
 
-# DATA Structure : [{Title:'',Body:{task1:'',task2:''}},{},{}]
+# DATA Structure :
+ [
+   {
+     title:'',
+     tasks:[{
+       task1:'do something'
+     }, {
+       task2:'do another thing'
+     }]
+   },
+   {
+     title:'',
+     tasks:[{
+       task1:'hi',
+       task2:'hello'
+     }]
+   }
+ ]
 
-#setup the environment:
-make directory accordingly
-write tests
-write server to serve files accordingly
+
+✅#setup the environment:
+✅make directory accordingly
+✅write tests
+✅write server to serve files accordingly
 
 
 Work on UI:
-make background 
-add heading
+✅make background 
+✅add heading
 add bullets points
 design card 
-add a facility to take input from client
+✅add a facility to take input from client
 
 #task1 :
-* create a todo list with title
-* save the data 
+✅* create a todo list with title
+✅* save the data 
 * render the page using XMLHttpRequest

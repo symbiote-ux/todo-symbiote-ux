@@ -28,3 +28,20 @@ describe('PUT /url', () => {
       .expect(/Method Not Allowed/);
   });
 });
+
+describe('POST "/saveTask"', () => {
+  it('should save the todo-tasks and redirect to home page', done => {
+    request(app.serve.bind(app))
+      .post('/saveTask')
+      .send('title=make card&tasks=plan')
+      .expect(303)
+      .expect('Location', '/', done);
+  });
+  it('redirected to homePage', done => {
+    request(app.serve.bind(app))
+      .get('/')
+      .expect(200)
+      .expect('Content-Type', 'text/html', done)
+      .expect(/ToDo/);
+  });
+});

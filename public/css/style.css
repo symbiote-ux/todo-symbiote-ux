@@ -15,3 +15,9 @@
   box-shadow: -2px -2px 2px 0.5 px rgba(0, 0, 0, 0.2);
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+fieldset {
+  width: 300px;
+  border: 2px groove rgba(0, 0, 0, 0.1);
+  margin: 5px 0px 0px 10px;
+}
