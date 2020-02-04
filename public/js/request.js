@@ -4,13 +4,17 @@ const todoHtml = responseText => {
     `<div><h3 class="title">${title}</h3></div>` +
     tasks
       .map(task => {
-        return `<div class="content">${task.content}</div>`;
+        return `<div class="content"><input type="checkbox"/> ${task.content}</div>`;
       })
-      .join('');
+      .join('') +
+    '<div style="display:flex; justify-content:space-evenly">' +
+    '<textarea id="textArea" name="tasks" placeholder="  add task..."></textarea>' +
+    '<button class="button">+</button>' +
+    '</div>';
   return html;
 };
 
-const addItem = () => {
+const addTextArea = () => {
   const table = document.querySelector('#table');
   const newLine = document.createElement('textarea');
   newLine.setAttribute('cols', '50');
