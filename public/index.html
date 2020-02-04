@@ -14,20 +14,26 @@
         <img src="./images/msg.png" alt="" height="80px" width="80px" />
         <h1 style="color:rgba(230, 33, 214, 0.8)">TODO</h1>
       </div>
-      <fieldset>
-        <legend>Create TODO</legend>
-        Title:<br />
-        <input id="title" type="text" name="title" />
-        <br />
-        Task:<br />
-        <div id="table">
-          <textarea id="content" rows="2" cols="50" name="tasks"></textarea>
+      <div id="container">
+        <div>
+          <fieldset>
+            <legend>Create TODO</legend>
+            Title:<br />
+            <input id="title" type="text" name="title" />
+            <br />
+            Task:<br />
+            <div id="table">
+              <textarea id="content" rows="2" cols="50" name="tasks"></textarea>
+            </div>
+            <br />
+            <button onclick="addItem()">Add Task</button>
+            <button onclick="sendRequest()">Save</button>
+          </fieldset>
         </div>
-        <br />
-        <button onclick="addItem()">Add Task</button>
-        <button onclick="sendRequest()">Save</button>
-      </fieldset>
-      <div id="todoList"></div>
+        <div id="todoList">
+          
+        </div>
+      </div>
     </div>
   </body>
 </html>

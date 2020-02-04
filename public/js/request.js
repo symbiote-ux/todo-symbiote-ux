@@ -1,15 +1,12 @@
 const todoHtml = responseText => {
   const {title, tasks} = responseText;
   const html =
-    `
-<div class="box">
-<div><h3>${title}</h3></div>` +
+    `<div><h3 class="title">${title}</h3></div>` +
     tasks
       .map(task => {
-        return `<div>${task.content}</div>`;
+        return `<div class="content">${task.content}</div>`;
       })
-      .join('') +
-    '</div>';
+      .join('');
   return html;
 };
 
@@ -28,6 +25,9 @@ const sendRequest = () => {
   const taskValues = tasks.map(task => {
     return task.value;
   });
+
+  document.querySelector('#title').value = '';
+  tasks.forEach(task => (task.value = ''));
   const reqData = {
     title: title,
     tasks: taskValues
@@ -40,8 +40,9 @@ const sendRequest = () => {
     if (xmlReq.status === ok) {
       const todoList = document.querySelector('#todoList');
       const newTodo = document.createElement('div');
+      newTodo.className = 'box';
       newTodo.innerHTML = todoHtml(JSON.parse(xmlReq.responseText));
-      todoList.append(newTodo);
+      todoList.prepend(newTodo);
     }
   };
 };
@@ -51,11 +52,13 @@ const fetchTodo = () => {
   xmlReq.onload = function() {
     const todoList = document.querySelector('#todoList');
     const allTodo = JSON.parse(xmlReq.responseText);
-    todoList.innerHTML = allTodo.map(todo => {
-      return `<div>
+    todoList.innerHTML = allTodo
+      .map(todo => {
+        return `<div class="box">
     ${todoHtml(todo)}
     </div>`;
-    });
+      })
+      .join('');
   };
 
   xmlReq.open('GET', '/allTodo');
