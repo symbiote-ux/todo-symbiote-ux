@@ -24,8 +24,6 @@ const itemHtml = content => {
 const toggleStatus = () => {
   const parentId = event.target.parentElement.parentElement.id;
   const taskId = event.target.parentElement.id;
-  console.log('==========>', taskId);
-  console.log('==========>', parentId, '=======>');
   const data = {parentId, taskId};
   const xmlReq = new XMLHttpRequest();
   xmlReq.open('POST', '/toggleState');
@@ -52,7 +50,7 @@ const addNewItem = () => {
   const taskValues = tasks.map(task => {
     return task.value;
   });
-  const content = taskValues.filter(task => task).join('');
+  const content = taskValues.find(task => task);
   const parentId = event.target.parentElement.parentElement.id;
   const data = {content, parentId};
   const xmlReq = new XMLHttpRequest();
