@@ -1,5 +1,4 @@
-const todoHtml = responseText => {
-  const {title, tasks} = responseText;
+const todoHtml = (title, tasks) => {
   const html =
     `<div><h3 class="title">${title}</h3></div>` +
     tasks
@@ -7,21 +6,36 @@ const todoHtml = responseText => {
         return `<div class="content"><input type="checkbox"/> ${task.content}</div>`;
       })
       .join('') +
-    '<div>' +
-    '<button class="button">+</button>' +
+    '<div id="addTextArea" style="display:flex;justify-content:start;">' +
+    '<textarea id="textArea" placeholder="  Add Tasks..."></textarea>' +
+    '<button class="button" onclick="addNewItem()">+</button>' +
     '</div>';
   return html;
 };
 
-const createTextArea = () => {
-  const area = document.querySelector('#addTextArea');
-  const textArea = document.createElement('textarea');
-  textArea.id = 'textArea';
-  const button = document.createElement('button');
-  button.innerText = 'Save';
-  button.onclick = addTodoItem;
-  area.prepend(button);
-  area.prepend(textArea);
+const itemHtml = content => {
+  return `<input type="checkbox"/>${content}`;
+};
+
+const addNewItem = () => {
+  const tasks = Array.from(document.querySelectorAll('#textArea'));
+  const taskValues = tasks.map(task => {
+    return task.value;
+  });
+  const content = taskValues.filter(task => task);
+  const parentId = event.target.parentElement.parentElement.id;
+  const data = {content, parentId};
+  const xmlReq = new XMLHttpRequest();
+  xmlReq.open('POST', '/addItem');
+  xmlReq.send(JSON.stringify(data));
+  xmlReq.onload = function() {
+    const newItem = document.createElement('div');
+    const parentTodo = document.getElementById(`${parentId}`);
+    const {id, content} = JSON.parse(xmlReq.responseText);
+    newItem.id = id;
+    newItem.innerHTML = itemHtml(content);
+    parentTodo.insertBefore(newItem, parentTodo.children[1]);
+  };
 };
 
 const sendRequest = () => {
@@ -43,8 +57,10 @@ const sendRequest = () => {
     if (xmlReq.status === ok) {
       const todoList = document.querySelector('#todoList');
       const newTodo = document.createElement('div');
+      const {id, title, tasks} = JSON.parse(xmlReq.responseText);
       newTodo.className = 'box';
-      newTodo.innerHTML = todoHtml(JSON.parse(xmlReq.responseText));
+      newTodo.id = id;
+      newTodo.innerHTML = todoHtml(title, tasks);
       todoList.prepend(newTodo);
     }
   };
@@ -57,8 +73,8 @@ const fetchTodo = () => {
     const allTodo = JSON.parse(xmlReq.responseText);
     todoList.innerHTML = allTodo
       .map(todo => {
-        return `<div class="box">
-    ${todoHtml(todo)}
+        return `<div id="${todo.id}"class="box">
+    ${todoHtml(todo.title, todo.tasks)}
     </div>`;
       })
       .join('');
