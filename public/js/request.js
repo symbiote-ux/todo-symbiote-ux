@@ -4,7 +4,10 @@ const todoHtml = (title, tasks) => {
     '<div onclick="removeTodo()">X</div>' +
     tasks
       .map(task => {
-        return `<div class="content"><input type="checkbox"/> ${task.content}</div>`;
+        if (task.status) {
+          return `<div class="content" id="${task.id}"><input type="checkbox" onclick="toggleStatus()" checked/> ${task.content}</div>`;
+        }
+        return `<div class="content" id="${task.id}"><input type="checkbox" onclick="toggleStatus()"/> ${task.content}</div>`;
       })
       .join('') +
     '<div id="addTextArea" style="display:flex;justify-content:start;">' +
@@ -16,6 +19,18 @@ const todoHtml = (title, tasks) => {
 
 const itemHtml = content => {
   return `<input type="checkbox"/>${content}`;
+};
+
+const toggleStatus = () => {
+  const parentId = event.target.parentElement.parentElement.id;
+  const taskId = event.target.parentElement.id;
+  console.log('==========>', taskId);
+  console.log('==========>', parentId, '=======>');
+  const data = {parentId, taskId};
+  const xmlReq = new XMLHttpRequest();
+  xmlReq.open('POST', '/toggleState');
+  xmlReq.send(JSON.stringify(data));
+  xmlReq.onload = () => {};
 };
 
 const removeTodo = () => {
@@ -37,7 +52,7 @@ const addNewItem = () => {
   const taskValues = tasks.map(task => {
     return task.value;
   });
-  const content = taskValues.filter(task => task);
+  const content = taskValues.filter(task => task).join('');
   const parentId = event.target.parentElement.parentElement.id;
   const data = {content, parentId};
   const xmlReq = new XMLHttpRequest();
