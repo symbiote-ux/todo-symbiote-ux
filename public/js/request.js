@@ -1,6 +1,7 @@
 const todoHtml = (title, tasks) => {
   const html =
     `<div><h3 class="title">${title}</h3></div>` +
+    '<div onclick="removeTodo()">X</div>' +
     tasks
       .map(task => {
         return `<div class="content"><input type="checkbox"/> ${task.content}</div>`;
@@ -15,6 +16,20 @@ const todoHtml = (title, tasks) => {
 
 const itemHtml = content => {
   return `<input type="checkbox"/>${content}`;
+};
+
+const removeTodo = () => {
+  const cardId = event.target.parentElement.id;
+  const card = document.getElementById(`${cardId}`);
+  const list = document.querySelector('#todoList');
+  const xmlReq = new XMLHttpRequest();
+  xmlReq.open('POST', '/removeTodo');
+  xmlReq.send(cardId);
+  xmlReq.onload = function() {
+    if (xmlReq.status === 201) {
+      list.removeChild(card);
+    }
+  };
 };
 
 const addNewItem = () => {
