@@ -60,12 +60,12 @@ fieldset {
 .button {
   margin: 3px 0px 15px 5px;
   border-radius: 7px;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 #textArea {
   margin-left: 15px;
   margin-top: 4px;
-  height: 20px;
-  width: 170px;
+  height: 15px;
+  width: 150px;
 }

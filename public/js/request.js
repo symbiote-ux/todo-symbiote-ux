@@ -7,37 +7,36 @@ const todoHtml = responseText => {
         return `<div class="content"><input type="checkbox"/> ${task.content}</div>`;
       })
       .join('') +
-    '<div style="display:flex; justify-content:space-evenly">' +
-    '<textarea id="textArea" name="tasks" placeholder="  add task..."></textarea>' +
+    '<div>' +
     '<button class="button">+</button>' +
     '</div>';
   return html;
 };
 
-const addTextArea = () => {
-  const table = document.querySelector('#table');
-  const newLine = document.createElement('textarea');
-  newLine.setAttribute('cols', '50');
-  newLine.id = 'content';
-  newLine.setAttribute('name', 'tasks');
-  table.appendChild(newLine);
+const createTextArea = () => {
+  const area = document.querySelector('#addTextArea');
+  const textArea = document.createElement('textarea');
+  textArea.id = 'textArea';
+  const button = document.createElement('button');
+  button.innerText = 'Save';
+  button.onclick = addTodoItem;
+  area.prepend(button);
+  area.prepend(textArea);
 };
 
 const sendRequest = () => {
   const title = document.querySelector('#title').value;
-  const tasks = Array.from(document.querySelectorAll('#content'));
-  const taskValues = tasks.map(task => {
-    return task.value;
-  });
-
+  const tasks = document.querySelector('#content').value.split('\n');
   document.querySelector('#title').value = '';
+  document.querySelector('#content').value = '';
+
   tasks.forEach(task => (task.value = ''));
   const reqData = {
     title: title,
-    tasks: taskValues
+    tasks: tasks
   };
   const xmlReq = new XMLHttpRequest();
-  xmlReq.open('POST', '/index.html');
+  xmlReq.open('POST', '/addNewTodo');
   xmlReq.send(JSON.stringify(reqData));
   xmlReq.onload = function() {
     const ok = 201;
