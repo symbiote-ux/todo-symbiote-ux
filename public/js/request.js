@@ -28,21 +28,19 @@ const makeItemHtml = (status, content, cardId) => {
 const addNewTodo = () => {
   const title = document.querySelector('#title').value;
   document.querySelector('#title').value = '';
-  const xmlReq = new XMLHttpRequest();
-  xmlReq.onload = function() {
+  const addTodo = function() {
     const ok = 200;
-    if (xmlReq.status === ok) {
+    if (this.status === ok) {
       const todoList = document.querySelector('#todoList');
       const newTodo = document.createElement('div');
-      const {id, title} = JSON.parse(xmlReq.responseText);
+      const {id, title} = JSON.parse(this.responseText);
       newTodo.className = 'box';
       newTodo.id = id;
       newTodo.innerHTML = todoHtml(title, [], id);
       todoList.prepend(newTodo);
     }
   };
-  xmlReq.open('POST', '/addTodo');
-  xmlReq.send(JSON.stringify({title: title}));
+  newReq('POST', '/addTodo', JSON.stringify({title: title}), addTodo);
 };
 
 const fetchAllTodo = () => {
