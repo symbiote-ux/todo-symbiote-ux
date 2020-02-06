@@ -30,7 +30,7 @@ const addNewTodo = () => {
   document.querySelector('#title').value = '';
   const xmlReq = new XMLHttpRequest();
   xmlReq.onload = function() {
-    const ok = 201;
+    const ok = 200;
     if (xmlReq.status === ok) {
       const todoList = document.querySelector('#todoList');
       const newTodo = document.createElement('div');
@@ -88,10 +88,7 @@ const addNewItem = cardId => {
 const toggleStatus = id => {
   const taskId = event.target.parentElement.id;
   const data = {cardId: id, taskId};
-  const xmlReq = new XMLHttpRequest();
-  xmlReq.open('POST', '/toggleState');
-  xmlReq.send(JSON.stringify(data));
-  xmlReq.onload = () => {};
+  newReq('POST', '/toggleState', JSON.stringify(data), () => {});
 };
 
 const removeTodo = cardId => {
