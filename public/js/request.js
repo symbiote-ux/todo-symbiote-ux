@@ -70,19 +70,17 @@ const addNewItem = cardId => {
   const content = taskValues.find(task => task);
   tasks.forEach(task => (task.value = ''));
   const data = {content, cardId};
-  const xmlReq = new XMLHttpRequest();
-  xmlReq.onload = function() {
+  const addTodoItem = function() {
     const newItem = document.createElement('div');
     newItem.className = 'content';
     const card = document.getElementById(`${cardId}`);
     const taskArea = card.querySelector('.taskArea');
-    const {id, content, status} = JSON.parse(xmlReq.responseText);
+    const {id, content, status} = JSON.parse(this.responseText);
     newItem.id = id;
     newItem.innerHTML = makeItemHtml(status, content, cardId);
     taskArea.appendChild(newItem);
   };
-  xmlReq.open('POST', '/addItem');
-  xmlReq.send(JSON.stringify(data));
+  newReq('POST', '/addItem', JSON.stringify(data), addTodoItem);
 };
 
 const toggleStatus = id => {
