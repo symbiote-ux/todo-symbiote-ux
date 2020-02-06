@@ -93,9 +93,9 @@ const addNewItem = () => {
     newItem.className = 'content';
     const card = document.getElementById(`${cardId}`);
     const taskArea = card.querySelector('.taskArea');
-    const {id, content} = JSON.parse(xmlReq.responseText);
+    const {id, content, status} = JSON.parse(xmlReq.responseText);
     newItem.id = id;
-    newItem.innerHTML = makeItemHtml(content);
+    newItem.innerHTML = makeItemHtml(status, content);
     taskArea.appendChild(newItem);
   };
   xmlReq.open('POST', '/addItem');

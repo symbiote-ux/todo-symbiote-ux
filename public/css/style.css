@@ -71,6 +71,6 @@ fieldset {
 }
 
 .taskArea {
-  height: 200px;
-  overflow: scroll;
+  /* height: 150px; */
+  /* overflow: scroll; */
 }
