@@ -25,17 +25,6 @@ const makeItemHtml = (status, content) => {
   return `<input type="checkbox" onclick="toggleStatus()"/> ${content} <span onclick="deleteItem()">&#9988;</span>`;
 };
 
-const makeNewTodoHtml = title => {
-  return (
-    `<div><h3 class="title">${title}<span onclick="removeTodo()">&#9988;</span></h3></div>` +
-    '<div class="taskArea"></div>' +
-    '<div id="addTextArea" style="display:flex;justify-content:start;">' +
-    '<textarea id="textArea" placeholder="  Add Tasks..."></textarea>' +
-    '<button class="button" onclick="addNewItem()">&#10009;</button>' +
-    '</div>'
-  );
-};
-
 const addNewTodo = () => {
   const title = document.querySelector('#title').value;
   document.querySelector('#title').value = '';
@@ -48,7 +37,7 @@ const addNewTodo = () => {
       const {id, title} = JSON.parse(xmlReq.responseText);
       newTodo.className = 'box';
       newTodo.id = id;
-      newTodo.innerHTML = makeNewTodoHtml(title);
+      newTodo.innerHTML = todoHtml(title, []);
       todoList.prepend(newTodo);
     }
   };
@@ -72,10 +61,6 @@ const fetchAllTodo = () => {
   xmlReq.open('GET', '/allTodo');
   xmlReq.send();
 };
-
-// const itemHtml = content => {
-//   return `<input type="checkbox"/>${content}`;
-// };
 
 const addNewItem = () => {
   const tasks = Array.from(document.querySelectorAll('#textArea'));
@@ -103,7 +88,7 @@ const addNewItem = () => {
 };
 
 const toggleStatus = () => {
-  const parentId = event.target.parentElement.parentElement.id;
+  const parentId = event.target.parentElement.parentElement.parentElement.id;
   const taskId = event.target.parentElement.id;
   const data = {parentId, taskId};
   const xmlReq = new XMLHttpRequest();
