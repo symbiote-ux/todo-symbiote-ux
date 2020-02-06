@@ -26,9 +26,11 @@
 
 fieldset {
   width: 150px;
-  border: 2px groove rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   margin: 5px 20px 0px 10px;
   height: 97.5%;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 #todoList {
