@@ -1,6 +1,6 @@
 const todoHtml = (title, tasks, cardId) => {
   const html =
-    `<div><h3 class="title">${title}<span onclick="removeTodo()">&#9988;</span></h3></div>` +
+    `<div><h3 class="title">${title}<span onclick="removeTodo(${cardId})">&#9988;</span></h3></div>` +
     '<div class="taskArea">' +
     tasks
       .map(
@@ -20,9 +20,9 @@ const todoHtml = (title, tasks, cardId) => {
 
 const makeItemHtml = (status, content, cardId) => {
   if (status) {
-    return `<input type="checkbox" onclick="toggleStatus(${cardId})" checked/> ${content} <span onclick="deleteItem()">&#9988;</span>`;
+    return `<input type="checkbox" onclick="toggleStatus(${cardId})" checked/> ${content} <span onclick="deleteItem(${cardId})">&#9988;</span>`;
   }
-  return `<input type="checkbox" onclick="toggleStatus(${cardId})"/> ${content} <span onclick="deleteItem()">&#9988;</span>`;
+  return `<input type="checkbox" onclick="toggleStatus(${cardId})"/> ${content} <span onclick="deleteItem(${cardId})">&#9988;</span>`;
 };
 
 const addNewTodo = () => {
@@ -94,8 +94,7 @@ const toggleStatus = id => {
   xmlReq.onload = () => {};
 };
 
-const removeTodo = () => {
-  const cardId = event.target.parentElement.id;
+const removeTodo = cardId => {
   const card = document.getElementById(`${cardId}`);
   const list = document.querySelector('#todoList');
   const xmlReq = new XMLHttpRequest();
@@ -108,16 +107,14 @@ const removeTodo = () => {
   };
 };
 
-const deleteItem = () => {
-  const parentId = event.target.parentElement.parentElement.id;
+const deleteItem = cardId => {
   const taskId = event.target.parentElement.id;
-  const data = {parentId, taskId};
+  const data = {cardId, taskId};
   const xmlReq = new XMLHttpRequest();
   xmlReq.onload = function() {
     if (xmlReq.status === 201) {
-      const card = document.getElementById(parentId);
       const item = document.getElementById(taskId);
-      card.removeChild(item);
+      item.remove();
     }
   };
   xmlReq.open('POST', '/deleteItem');
