@@ -56,7 +56,9 @@ design card
 ✅# Add an item to the todo list
 
 
-#Refactor id giving mechanism
+✅#Refactor id giving mechanism
+
+# Refactor add Item mechanism in UI and backend
 
 #Refactor the handlers
 *Extract classes out of handlers
