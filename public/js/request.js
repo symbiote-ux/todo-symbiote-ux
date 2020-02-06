@@ -110,15 +110,20 @@ const removeTodo = cardId => {
 const deleteItem = cardId => {
   const taskId = event.target.parentElement.id;
   const data = {cardId, taskId};
-  const xmlReq = new XMLHttpRequest();
-  xmlReq.onload = function() {
-    if (xmlReq.status === 201) {
+  const removeItem = function() {
+    if (this.status === 200) {
       const item = document.getElementById(taskId);
       item.remove();
     }
   };
-  xmlReq.open('POST', '/deleteItem');
-  xmlReq.send(JSON.stringify(data));
+  newReq('POST', '/deleteItem', JSON.stringify(data), removeItem);
+};
+
+const newReq = (method, url, data, callback) => {
+  const req = new XMLHttpRequest();
+  req.open(method, url);
+  req.onload = callback;
+  req.send(data);
 };
 
 window.onload = fetchAllTodo;
