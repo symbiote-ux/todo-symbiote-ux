@@ -1,6 +1,6 @@
 const todoHtml = (title, tasks, cardId) => {
   const html =
-    `<div><h3 class="title">${title}<span onclick="removeTodo(${cardId})">&#9988;</span></h3></div>` +
+    `<div><h3 class="title"><span onclick="removeTodo(${cardId})">&#9988;</span> ${title}</h3></div>` +
     '<div class="taskArea">' +
     tasks
       .map(
@@ -20,7 +20,7 @@ const todoHtml = (title, tasks, cardId) => {
 
 const makeItemHtml = (status, content, cardId) => {
   if (status) {
-    return `<input type="checkbox" onclick="toggleStatus(${cardId})" checked/> ${content} <span onclick="deleteItem(${cardId})">&#9988;</span>`;
+    return `<span onclick="deleteItem(${cardId})">&#9988;</span> <input type="checkbox" onclick="toggleStatus(${cardId})" checked/> ${content}`;
   }
-  return `<input type="checkbox" onclick="toggleStatus(${cardId})"/> ${content} <span onclick="deleteItem(${cardId})">&#9988;</span>`;
+  return `<span onclick="deleteItem(${cardId})">&#9988;</span> <input type="checkbox" onclick="toggleStatus(${cardId})"/> ${content}`;
 };
