@@ -12,7 +12,7 @@ const todoHtml = (title, tasks) => {
       .join('') +
     '<div id="addTextArea" style="display:flex;justify-content:start;">' +
     '<textarea id="textArea" placeholder="  Add Tasks..."></textarea>' +
-    '<button class="button" onclick="addNewItem()">+</button>' +
+    '<button class="button" onclick="addNewItem()">&#10009;</button>' +
     '</div>';
   return html;
 };

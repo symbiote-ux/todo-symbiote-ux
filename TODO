@@ -14,16 +14,21 @@
    {
      title:'',
      tasks:[{
-       task1:'do something'
+       id:"123",
+       task1:'do something',
+       status:false
      }, {
-       task2:'do another thing'
+       id:"125",
+       task2:'do another thing',
+       status:false
      }]
    },
    {
      title:'',
      tasks:[{
+       id:"1256",
        task1:'hi',
-       task2:'hello'
+       status:false
      }]
    }
  ]
@@ -45,8 +50,17 @@ design card
 #task1 :
 ✅* create a todo list with title
 ✅* save the data 
-* render the page using XMLHttpRequest
+✅* render the page using XMLHttpRequest
 
 
-# Add an item to the todo list
-    
+✅# Add an item to the todo list
+
+
+#Refactor id giving mechanism
+
+#Refactor the handlers
+*Extract classes out of handlers
+
+#Refactor frontEnd
+* Extract classes
+

@@ -6,5 +6,4 @@ const main = () => {
   const server = new Server(app.serve.bind(app));
   server.listen(port);
 };
-
 main();
