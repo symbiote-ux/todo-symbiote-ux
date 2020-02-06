@@ -1,13 +1,13 @@
 const todoHtml = (title, tasks) => {
   const html =
     `<div><h3 class="title">${title}</h3></div>` +
-    '<div onclick="removeTodo()">X</div>' +
+    '<div onclick="removeTodo()">&#9988;</div>' +
     tasks
       .map(task => {
         if (task.status) {
-          return `<div class="content" id="${task.id}"><input type="checkbox" onclick="toggleStatus()" checked/> ${task.content} <span onclick="deleteItem()"> &nbsp X</span></div>`;
+          return `<div class="content" id="${task.id}"><input type="checkbox" onclick="toggleStatus()" checked/> ${task.content} <span onclick="deleteItem()">&#9988;</span></div>`;
         }
-        return `<div class="content" id="${task.id}"><input type="checkbox" onclick="toggleStatus()"/> ${task.content} <span onclick="deleteItem()">  &nbsp X</span></div>`;
+        return `<div class="content" id="${task.id}"><input type="checkbox" onclick="toggleStatus()"/> ${task.content} <span onclick="deleteItem()">&#9988;</span></div>`;
       })
       .join('') +
     '<div id="addTextArea" style="display:flex;justify-content:start;">' +
