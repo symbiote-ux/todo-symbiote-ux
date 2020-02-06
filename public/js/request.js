@@ -97,14 +97,12 @@ const toggleStatus = id => {
 const removeTodo = cardId => {
   const card = document.getElementById(`${cardId}`);
   const list = document.querySelector('#todoList');
-  const xmlReq = new XMLHttpRequest();
-  xmlReq.open('POST', '/removeTodo');
-  xmlReq.send(cardId);
-  xmlReq.onload = function() {
-    if (xmlReq.status === 201) {
+  const deleteTodo = function() {
+    if (this.status === 200) {
       list.removeChild(card);
     }
   };
+  newReq('POST', '/removeTodo', cardId, deleteTodo);
 };
 
 const deleteItem = cardId => {
