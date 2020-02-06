@@ -1,7 +1,16 @@
 const todoHtml = (title, tasks) => {
   const html =
     `<div><h3 class="title">${title}<span onclick="removeTodo()">&#9988;</span></h3></div>` +
-    tasks.map(task => makeItemHtml(task.status, task.id, task.content)).join('') +
+    '<div class="taskArea">' +
+    tasks
+      .map(
+        task =>
+          `<div id="${task.id}" class="content">` +
+          makeItemHtml(task.status, task.content) +
+          '</div>'
+      )
+      .join('') +
+    '</div>' +
     '<div id="addTextArea" style="display:flex;justify-content:start;">' +
     '<textarea id="textArea" placeholder="  Add Tasks..."></textarea>' +
     '<button class="button" onclick="addNewItem()">&#10009;</button>' +
@@ -9,16 +18,17 @@ const todoHtml = (title, tasks) => {
   return html;
 };
 
-const makeItemHtml = (status, id, content) => {
+const makeItemHtml = (status, content) => {
   if (status) {
-    return `<div class="content" id="${id}"><input type="checkbox" onclick="toggleStatus()" checked/> ${content} <span onclick="deleteItem()">&#9988;</span></div>`;
+    return `<input type="checkbox" onclick="toggleStatus()" checked/> ${content} <span onclick="deleteItem()">&#9988;</span>`;
   }
-  return `<div class="content" id="${id}"><input type="checkbox" onclick="toggleStatus()"/> ${content} <span onclick="deleteItem()">&#9988;</span></div>`;
+  return `<input type="checkbox" onclick="toggleStatus()"/> ${content} <span onclick="deleteItem()">&#9988;</span>`;
 };
 
 const makeNewTodoHtml = title => {
   return (
     `<div><h3 class="title">${title}<span onclick="removeTodo()">&#9988;</span></h3></div>` +
+    '<div class="taskArea"></div>' +
     '<div id="addTextArea" style="display:flex;justify-content:start;">' +
     '<textarea id="textArea" placeholder="  Add Tasks..."></textarea>' +
     '<button class="button" onclick="addNewItem()">&#10009;</button>' +
@@ -51,18 +61,45 @@ const fetchAllTodo = () => {
   xmlReq.onload = function() {
     const todoList = document.querySelector('#todoList');
     const allTodo = JSON.parse(xmlReq.responseText);
-    todoList.innerHTML = allTodo.map(todo => {
-      return `<div id="${todo.id}"class="box">
+    todoList.innerHTML = allTodo
+      .map(todo => {
+        return `<div id="${todo.id}"class="box">
     ${todoHtml(todo.title, todo.tasks)}
     </div>`;
-    }).join('');
+      })
+      .join('');
   };
   xmlReq.open('GET', '/allTodo');
   xmlReq.send();
 };
 
-const itemHtml = content => {
-  return `<input type="checkbox"/>${content}`;
+// const itemHtml = content => {
+//   return `<input type="checkbox"/>${content}`;
+// };
+
+const addNewItem = () => {
+  const tasks = Array.from(document.querySelectorAll('#textArea'));
+  const taskValues = tasks.map(task => {
+    return task.value;
+  });
+  const content = taskValues.find(task => task);
+  tasks.forEach(task => (task.value = ''));
+
+  const cardId = event.target.parentElement.parentElement.id;
+  const data = {content, cardId};
+  const xmlReq = new XMLHttpRequest();
+  xmlReq.onload = function() {
+    const newItem = document.createElement('div');
+    newItem.className = 'content';
+    const card = document.getElementById(`${cardId}`);
+    const taskArea = card.querySelector('.taskArea');
+    const {id, content} = JSON.parse(xmlReq.responseText);
+    newItem.id = id;
+    newItem.innerHTML = makeItemHtml(content);
+    taskArea.appendChild(newItem);
+  };
+  xmlReq.open('POST', '/addItem');
+  xmlReq.send(JSON.stringify(data));
 };
 
 const toggleStatus = () => {
@@ -75,19 +112,19 @@ const toggleStatus = () => {
   xmlReq.onload = () => {};
 };
 
-const removeTodo = () => {
-  const cardId = event.target.parentElement.id;
-  const card = document.getElementById(`${cardId}`);
-  const list = document.querySelector('#todoList');
-  const xmlReq = new XMLHttpRequest();
-  xmlReq.open('POST', '/removeTodo');
-  xmlReq.send(cardId);
-  xmlReq.onload = function() {
-    if (xmlReq.status === 201) {
-      list.removeChild(card);
-    }
-  };
-};
+// const removeTodo = () => {
+//   const cardId = event.target.parentElement.id;
+//   const card = document.getElementById(`${cardId}`);
+//   const list = document.querySelector('#todoList');
+//   const xmlReq = new XMLHttpRequest();
+//   xmlReq.open('POST', '/removeTodo');
+//   xmlReq.send(cardId);
+//   xmlReq.onload = function() {
+//     if (xmlReq.status === 201) {
+//       list.removeChild(card);
+//     }
+//   };
+// };
 
 const deleteItem = () => {
   const parentId = event.target.parentElement.parentElement.id;
@@ -104,26 +141,5 @@ const deleteItem = () => {
   xmlReq.open('POST', '/deleteItem');
   xmlReq.send(JSON.stringify(data));
 };
-
-// const addNewItem = () => {
-//   const tasks = Array.from(document.querySelectorAll('#textArea'));
-//   const taskValues = tasks.map(task => {
-//     return task.value;
-//   });
-//   const content = taskValues.find(task => task);
-//   const parentId = event.target.parentElement.parentElement.id;
-//   const data = {content, parentId};
-//   const xmlReq = new XMLHttpRequest();
-//   xmlReq.open('POST', '/addItem');
-//   xmlReq.send(JSON.stringify(data));
-//   xmlReq.onload = function() {
-//     const newItem = document.createElement('div');
-//     const parentTodo = document.getElementById(`${parentId}`);
-//     const {id, content} = JSON.parse(xmlReq.responseText);
-//     newItem.id = id;
-//     newItem.innerHTML = itemHtml(content);
-//     parentTodo.insertBefore(newItem, parentTodo.children[1]);
-//   };
-// };
 
 window.onload = fetchAllTodo;
