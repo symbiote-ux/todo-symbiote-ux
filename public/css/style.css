@@ -28,7 +28,7 @@ fieldset {
   width: 150px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   margin: 5px 20px 0px 10px;
-  height: 97.5%;
+  height: 97%;
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
@@ -74,6 +74,6 @@ fieldset {
 }
 
 .taskArea {
-  height: 265px;
+  height: 210px;
   overflow: scroll;
 }
