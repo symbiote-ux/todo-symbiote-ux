@@ -1,4 +1,4 @@
-const todoHtml = (title, tasks) => {
+const todoHtml = (title, tasks, cardId) => {
   const html =
     `<div><h3 class="title">${title}<span onclick="removeTodo()">&#9988;</span></h3></div>` +
     '<div class="taskArea">' +
@@ -6,7 +6,7 @@ const todoHtml = (title, tasks) => {
       .map(
         task =>
           `<div id="${task.id}" class="content">` +
-          makeItemHtml(task.status, task.content) +
+          makeItemHtml(task.status, task.content, cardId) +
           '</div>'
       )
       .join('') +
@@ -18,11 +18,11 @@ const todoHtml = (title, tasks) => {
   return html;
 };
 
-const makeItemHtml = (status, content) => {
+const makeItemHtml = (status, content, cardId) => {
   if (status) {
-    return `<input type="checkbox" onclick="toggleStatus()" checked/> ${content} <span onclick="deleteItem()">&#9988;</span>`;
+    return `<input type="checkbox" onclick="toggleStatus(${cardId})" checked/> ${content} <span onclick="deleteItem()">&#9988;</span>`;
   }
-  return `<input type="checkbox" onclick="toggleStatus()"/> ${content} <span onclick="deleteItem()">&#9988;</span>`;
+  return `<input type="checkbox" onclick="toggleStatus(${cardId})"/> ${content} <span onclick="deleteItem()">&#9988;</span>`;
 };
 
 const addNewTodo = () => {
@@ -37,7 +37,7 @@ const addNewTodo = () => {
       const {id, title} = JSON.parse(xmlReq.responseText);
       newTodo.className = 'box';
       newTodo.id = id;
-      newTodo.innerHTML = todoHtml(title, []);
+      newTodo.innerHTML = todoHtml(title, [], id);
       todoList.prepend(newTodo);
     }
   };
@@ -53,7 +53,7 @@ const fetchAllTodo = () => {
     todoList.innerHTML = allTodo
       .map(todo => {
         return `<div id="${todo.id}"class="box">
-    ${todoHtml(todo.title, todo.tasks)}
+    ${todoHtml(todo.title, todo.tasks, todo.id)}
     </div>`;
       })
       .join('');
@@ -80,17 +80,16 @@ const addNewItem = () => {
     const taskArea = card.querySelector('.taskArea');
     const {id, content, status} = JSON.parse(xmlReq.responseText);
     newItem.id = id;
-    newItem.innerHTML = makeItemHtml(status, content);
+    newItem.innerHTML = makeItemHtml(status, content, cardId);
     taskArea.appendChild(newItem);
   };
   xmlReq.open('POST', '/addItem');
   xmlReq.send(JSON.stringify(data));
 };
 
-const toggleStatus = () => {
-  const parentId = event.target.parentElement.parentElement.parentElement.id;
+const toggleStatus = id => {
   const taskId = event.target.parentElement.id;
-  const data = {parentId, taskId};
+  const data = {cardId: id, taskId};
   const xmlReq = new XMLHttpRequest();
   xmlReq.open('POST', '/toggleState');
   xmlReq.send(JSON.stringify(data));
