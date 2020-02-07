@@ -63,6 +63,7 @@ describe('POST  /toggleState', () => {
     request(app.serve.bind(app))
       .post('/toggleState')
       .send('{"cardId":"H_1","taskId": "T_1"}')
-      .expect(200, done);
+      .expect(200, done)
+      .expect('Content-Type', 'application/json');
   });
 });
