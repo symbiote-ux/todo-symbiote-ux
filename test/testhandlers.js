@@ -1,5 +1,14 @@
+const fs = require('fs');
 const request = require('supertest');
+const config = require('../config');
 const {app} = require('../lib/handlers');
+const FILE_PATH = config.DATA_FILE_PATH;
+
+const testFileContent = fs.readFileSync(FILE_PATH, 'utf8');
+
+after(() => {
+  fs.writeFile(FILE_PATH, testFileContent, () => {});
+});
 
 describe('Get home page ', () => {
   it('serves home page on "/" path', done => {
@@ -29,19 +38,32 @@ describe('PUT /url', () => {
   });
 });
 
-describe('POST "/saveTask"', () => {
-  it('should save the todo-tasks and redirect to home page', done => {
+describe('GET /allTodo', () => {
+  it('should display all todoList on window load', done => {
     request(app.serve.bind(app))
-      .post('/saveTask')
-      .send('title=make card&tasks=plan')
-      .expect(303)
-      .expect('Location', '/', done);
-  });
-  it('redirected to homePage', done => {
-    request(app.serve.bind(app))
-      .get('/')
-      .expect(200)
-      .expect('Content-Type', 'text/html', done)
-      .expect(/ToDo/);
+      .get('/allTodo')
+      .set('Accept', '*/*')
+      .expect(200, done)
+      .expect('Content-Type', 'application/json');
   });
 });
+
+describe('POST /addTodo', () => {
+  it('should add New todo on /addTodo req', done => {
+    request(app.serve.bind(app))
+      .post('/addTodo')
+      .send('{"title":"Hello"}')
+      .expect(200, done);
+  });
+});
+
+describe('POST  /toggleState', () => {
+  it('should mark done or undone on clicking on checkBox', done => {
+    request(app.serve.bind(app))
+      .post('/toggleState')
+      .send('{"cardId":"H_1","taskId": "T_1"}')
+      .expect(200, done);
+  });
+});
+
+

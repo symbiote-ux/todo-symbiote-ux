@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha",
-    "start": "node server.js"
+    "test": "export DATA_FILE_PATH=$(pwd)/test/resource/data.json;nyc mocha",
+    "start": "export DATA_FILE_PATH=$(pwd)/dataDepot/data.json;node server.js"
   },
   "repository": {
     "type": "git",
