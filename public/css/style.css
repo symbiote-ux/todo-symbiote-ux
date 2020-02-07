@@ -25,12 +25,12 @@
 }
 
 fieldset {
-  width: 150px;
+  width: 215px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  margin: 5px 20px 0px 10px;
-  height: 97%;
+  margin: 10px 20px 10px 10px;
+  height: 295px;
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  border-radius: 0px 0px 10px 10px;
 }
 
 #todoList {
@@ -41,7 +41,7 @@ fieldset {
 }
 
 .box {
-  width: 250px;
+  width: 240px;
   height: auto;
   margin: 20px 20px 0px 20px;
   border-radius: 0px 0px 10px 10px;

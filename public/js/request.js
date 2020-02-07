@@ -39,6 +39,7 @@ const addNewItem = cardId => {
     return task.value;
   });
   const content = taskValues.find(task => task);
+  if (!content) return;
   tasks.forEach(task => (task.value = ''));
   const data = {content, cardId};
   const addTodoItem = function() {
