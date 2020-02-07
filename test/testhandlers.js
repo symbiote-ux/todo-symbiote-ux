@@ -67,3 +67,13 @@ describe('POST  /toggleState', () => {
       .expect('Content-Type', 'application/json');
   });
 });
+
+describe('POST  /deleteItem', () => {
+  it('should delete the item on /deleteItem req', done => {
+    request(app.serve.bind(app))
+      .post('/deleteItem')
+      .send('{"cardId":"H_1","taskId":"T_1"}')
+      .expect(200, done)
+      .expect('Content-Type', 'application/json');
+  });
+});
