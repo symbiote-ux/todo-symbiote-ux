@@ -53,7 +53,8 @@ describe('POST /addTodo', () => {
     request(app.serve.bind(app))
       .post('/addTodo')
       .send('{"title":"Hello"}')
-      .expect(200, done);
+      .expect(200, done)
+      .expect('Content-Type', 'application/json');
   });
 });
 
@@ -65,5 +66,3 @@ describe('POST  /toggleState', () => {
       .expect(200, done);
   });
 });
-
-
