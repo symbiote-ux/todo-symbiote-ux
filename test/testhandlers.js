@@ -87,3 +87,13 @@ describe('POST  /addItem', () => {
       .expect('Content-Type', 'application/json');
   });
 });
+
+describe('POST  /removeTodo', () => {
+  it('should remove the selected todo on /removeTodo req', done => {
+    request(app.serve.bind(app))
+      .post('/removeTodo')
+      .send('{"cardId":"H_1"}')
+      .expect(200, done)
+      .expect('Content-Type', 'application/json');
+  });
+});
