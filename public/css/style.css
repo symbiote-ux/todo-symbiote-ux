@@ -76,4 +76,6 @@ fieldset {
 .taskArea {
   height: 210px;
   overflow: scroll;
+  word-wrap: break-word;
+  word-break: break-all;
 }
