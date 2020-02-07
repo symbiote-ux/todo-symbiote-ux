@@ -1,6 +1,7 @@
 const addNewTodo = () => {
   const title = document.querySelector('#title').value;
   document.querySelector('#title').value = '';
+
   const addTodo = function() {
     const ok = 200;
     if (this.status === ok) {
@@ -13,7 +14,7 @@ const addNewTodo = () => {
       todoList.prepend(newTodo);
     }
   };
-  newReq('POST', '/addTodo', JSON.stringify({title: title}), addTodo);
+  newReq('POST', '/addTodo', JSON.stringify({title}), addTodo);
 };
 
 const fetchAllTodo = () => {
@@ -21,6 +22,7 @@ const fetchAllTodo = () => {
   xmlReq.onload = function() {
     const todoList = document.querySelector('#todoList');
     const allTodo = JSON.parse(xmlReq.responseText);
+
     todoList.innerHTML = allTodo
       .map(todo => {
         return `<div id="${todo.id}"class="box">
