@@ -69,18 +69,24 @@ design card
 
 -------------------------------------------------#New Requirements: version:0.2 ----------------------------------------
 
-   ✅* Edit title: Ability to edit their existing todo list title.
-   * Edit tasks: Ability to edit their existing tasks.
-   * Search by title:  Search the list by its title words.
-   * Search by tasks: Search the todo item by its matched words.
-   * User Todo's : A user can log in and log out off their account and work on their own todos.
-   * Home Page: If not logged in it is a login page else it is the user's todo page/dashboard.
+    ✅* Edit title: Ability to edit their existing todo list title.
+    ✅* Edit tasks: Ability to edit their existing tasks.
+      * Search by title:  Search the list by its title words.
+      * Search by tasks: Search the todo item by its matched words.
+      * User Todo's : A user can log in and log out off their account and work on their own todos.
+      * Home Page: If not logged in it is a login page else it is the user's todo page/dashboard.
 
 
 ✅#Edit title :
   =>change the heading into input tag 
   => onChange  it will trigger a function that will change the title
 
-  #Edit Tasks:
+✅ #Edit Tasks:
   =>change edit div into input tag 
   =>it will trigger a editTask function
+
+#Search by Title:
+ =>make input form to take input for Search
+ =>write function to search by title name
+ 
+

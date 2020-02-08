@@ -107,3 +107,14 @@ describe('POST  /editTitle', () => {
       .expect('Content-Type', 'application/json');
   });
 });
+
+describe('POST  /editTask', () => {
+  it('should edit task item on /editTask Req', done => {
+    request(app.serve.bind(app))
+      .post('/editTask')
+      .send('{"cardId":"H_1","taskId":"T_1","task":"Hi"}')
+      .expect(200, done)
+      .expect('Content-Type', 'application/json');
+  });
+});
+

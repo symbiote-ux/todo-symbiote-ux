@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/request.js"></script>
-    <script src="./js/makeTodoHtml.js"></script>
+    <script src="./templates/template.js"></script>
     <title>ToDo</title>
   </head>
   <body>
@@ -18,19 +18,30 @@
       <div id="container">
         <div>
           <fieldset>
-            <legend>Create TODO</legend>
-            <br />
-            Title:<br />
-            <input
-              id="title"
-              style="width: 180px;height: 16px;"
-              type="text"
-              name="title"
-              placeholder="  Add Tittle..."
-            />
-            <br /><br />
-            <button onclick="addNewTodo()">Save</button>
+            <legend>Search TODO</legend>
+            <div id="titleSearch" class="search">
+              <input type="text" placeholder="  Enter Title to search..." />
+            </div>
+            <div id="taskSearch" class="search">
+              <input type="text" placeholder="  Enter Task to search..." />
+            </div>
           </fieldset>
+          <div>
+            <fieldset id="createTodo">
+              <legend>Create TODO</legend>
+              <br />
+              Title:<br />
+              <input
+                id="title"
+                style="width: 180px;height: 16px;"
+                type="text"
+                name="title"
+                placeholder="  Add Tittle..."
+              />
+              <br /><br />
+              <button onclick="addNewTodo()">Save</button>
+            </fieldset>
+          </div>
         </div>
         <div id="todoList"></div>
       </div>
