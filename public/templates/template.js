@@ -23,5 +23,5 @@ const makeItemHtml = (status, content, cardId, taskId) => {
   if (status) {
     checked = 'checked';
   }
-  return `<span style="cursor:pointer;" onclick="deleteItem('${cardId}')">&#9988;</span> <input type="checkbox" onclick="toggleStatus('${cardId}')" ${checked}/> <input value="${content}" onchange="editTask('${cardId}','${taskId}')" />`;
+  return `<span style="cursor:pointer;" onclick="deleteItem('${cardId}')">&#9988;</span> <input type="checkbox" onclick="toggleStatus('${cardId}')" ${checked}/> <input value="${content}" onchange="editTask('${cardId}','${taskId}')" class="inputTag"/>`;
 };
