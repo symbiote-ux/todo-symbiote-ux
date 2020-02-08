@@ -92,7 +92,17 @@ describe('POST  /removeTodo', () => {
   it('should remove the selected todo on /removeTodo req', done => {
     request(app.serve.bind(app))
       .post('/removeTodo')
-      .send('{"cardId":"H_1"}')
+      .send('{"cardId":"H_2"}')
+      .expect(200, done)
+      .expect('Content-Type', 'application/json');
+  });
+});
+
+describe('POST  /editTitle', () => {
+  it('should edit title  and save the content on /editTitle Req', done => {
+    request(app.serve.bind(app))
+      .post('/editTitle')
+      .send('{"cardId":"H_1","title":"Cat"}')
       .expect(200, done)
       .expect('Content-Type', 'application/json');
   });

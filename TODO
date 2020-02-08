@@ -69,7 +69,7 @@ design card
 
 #New Requirements: version:0.2
 
-   * Edit title: Ability to edit their existing todo list title.
+   ✅* Edit title: Ability to edit their existing todo list title.
    * Edit tasks: Ability to edit their existing tasks.
    * Search by title:  Search the list by its title words.
    * Search by tasks: Search the todo item by its matched words.
@@ -77,6 +77,6 @@ design card
    * Home Page: If not logged in it is a login page else it is the user's todo page/dashboard.
 
 
-#Edit title :
+✅#Edit title :
   =>change the heading into input tag 
   => onChange  it will trigger a function that will change the title
