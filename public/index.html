@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/search.js"></script>
     <script src="./js/request.js"></script>
     <script src="./templates/template.js"></script>
     <title>ToDo</title>
@@ -20,10 +21,18 @@
           <fieldset>
             <legend>Search TODO</legend>
             <div id="titleSearch" class="search">
-              <input type="text" placeholder="  Enter Title to search..." />
+              <input
+                type="text"
+                placeholder="  Enter Title to search..."
+                oninput="searchByTitle()"
+              />
             </div>
             <div id="taskSearch" class="search">
-              <input type="text" placeholder="  Enter Task to search..." />
+              <input
+                type="text"
+                placeholder="  Enter Task to search..."
+                onkeydown="searchByTask()"
+              />
             </div>
           </fieldset>
           <div>
