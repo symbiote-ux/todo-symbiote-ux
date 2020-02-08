@@ -1,6 +1,6 @@
 ----------------tasks to be done-----------------------------
 
-#Requirements:
+#Requirements: version:0.1
 ✅* Create one or more to-do list with a title
 ✅* View all the to-do lists
 ✅* Add an item to a to-do list
@@ -58,11 +58,25 @@ design card
 
 ✅#Refactor id giving mechanism
 
-# Refactor add Item mechanism in UI and backend
+✅# Refactor add Item mechanism in UI and backend
 
-#Refactor the handlers
-*Extract classes out of handlers
+✅#Refactor the handlers
+✅*Extract classes out of handlers
 
-#Refactor frontEnd
-* Extract classes
+✅#Refactor frontEnd
+✅* Extract classes
 
+
+#New Requirements: version:0.2
+
+   * Edit title: Ability to edit their existing todo list title.
+   * Edit tasks: Ability to edit their existing tasks.
+   * Search by title:  Search the list by its title words.
+   * Search by tasks: Search the todo item by its matched words.
+   * User Todo's : A user can log in and log out off their account and work on their own todos.
+   * Home Page: If not logged in it is a login page else it is the user's todo page/dashboard.
+
+
+#Edit title :
+  =>change the heading into input tag 
+  => onChange  it will trigger a function that will change the title

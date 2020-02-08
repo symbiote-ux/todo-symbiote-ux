@@ -49,10 +49,19 @@ fieldset {
 }
 
 .title {
+  display: flex;
+  justify-content: start;
+  background-color: rgba(66, 176, 219, 0.6);
+}
+
+.titleText {
   margin: 0;
   padding: 14px 0;
-  text-align: center;
-  background-color: rgba(66, 176, 219, 0.6);
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .content {
@@ -78,4 +87,9 @@ fieldset {
   overflow: scroll;
   word-wrap: break-word;
   word-break: break-all;
+}
+
+.cross {
+  cursor: pointer;
+  padding: 20px;
 }

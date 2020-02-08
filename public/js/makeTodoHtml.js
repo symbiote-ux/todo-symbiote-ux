@@ -1,6 +1,6 @@
 const todoHtml = (title, tasks, cardId) => {
   const html =
-    `<div><h3 class="title"><span style="cursor:pointer;" onclick="removeTodo('${cardId}')">&#9988;</span> ${title}</h3></div>` +
+    `<div class="title"><span class="cross" onclick="removeTodo('${cardId}')">&#9988;</span><input value="${title}" class="titleText" onchange="editTitle('${cardId}')"/></div>` +
     '<div class="taskArea">' +
     tasks
       .map(

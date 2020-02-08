@@ -86,6 +86,11 @@ const deleteItem = cardId => {
   newReq('POST', '/deleteItem', JSON.stringify(data), removeItem);
 };
 
+const editTitle = cardId => {
+  const title = event.target.value;
+  newReq('POST', '/editTitle', JSON.stringify({cardId, title}), () => {});
+};
+
 const newReq = (method, url, data, callback) => {
   const req = new XMLHttpRequest();
   req.open(method, url);
