@@ -51,7 +51,7 @@ const addNewItem = cardId => {
     const taskArea = card.querySelector('.taskArea');
     const {id, content, status} = JSON.parse(this.responseText);
     newItem.id = id;
-    newItem.innerHTML = makeItemHtml(status, content, cardId);
+    newItem.innerHTML = makeItemHtml(status, content, cardId, id);
     taskArea.appendChild(newItem);
   };
   newReq('POST', '/addItem', JSON.stringify(data), addTodoItem);
@@ -89,6 +89,11 @@ const deleteItem = cardId => {
 const editTitle = cardId => {
   const title = event.target.value;
   newReq('POST', '/editTitle', JSON.stringify({cardId, title}), () => {});
+};
+
+const editTask = (cardId, taskId) => {
+  const task = event.target.value;
+  newReq('POST', '/editTask', JSON.stringify({cardId, taskId, task}), () => {});
 };
 
 const newReq = (method, url, data, callback) => {
