@@ -19,8 +19,9 @@ const todoHtml = (title, tasks, cardId) => {
 };
 
 const makeItemHtml = (status, content, cardId) => {
+  let checked = '';
   if (status) {
-    return `<span style="cursor:pointer;" onclick="deleteItem('${cardId}')">&#9988;</span> <input type="checkbox" onclick="toggleStatus('${cardId}')" checked/> ${content}`;
+    checked = 'checked';
   }
-  return `<span  style="cursor:pointer;" onclick="deleteItem('${cardId}')">&#9988;</span> <input type="checkbox" onclick="toggleStatus('${cardId}')"/> ${content}`;
+  return `<span style="cursor:pointer;" onclick="deleteItem('${cardId}')">&#9988;</span> <input type="checkbox" onclick="toggleStatus('${cardId}')" ${checked}/> <input value="${content}" />`;
 };

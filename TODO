@@ -67,7 +67,7 @@ design card
 ✅* Extract classes
 
 
-#New Requirements: version:0.2
+-------------------------------------------------#New Requirements: version:0.2 ----------------------------------------
 
    ✅* Edit title: Ability to edit their existing todo list title.
    * Edit tasks: Ability to edit their existing tasks.
@@ -80,3 +80,7 @@ design card
 ✅#Edit title :
   =>change the heading into input tag 
   => onChange  it will trigger a function that will change the title
+
+  #Edit Tasks:
+  =>change edit div into input tag 
+  =>it will trigger a editTask function

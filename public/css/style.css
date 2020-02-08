@@ -70,6 +70,12 @@ fieldset {
   padding: 10px 10px 5px;
 }
 
+.content > input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
 .button {
   margin: 3px 0px 15px 5px;
   border-radius: 7px;
