@@ -83,6 +83,10 @@
   font-size: 15px;
 }
 
+.button:hover {
+  background-color: rgb(135, 206, 235);
+}
+
 #textArea {
   margin-left: 15px;
   margin-top: 4px;
@@ -123,3 +127,30 @@ fieldset {
   display: none;
 }
 
+#loginBox,
+#signUpBox {
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+  width: 320px;
+  height: 450px;
+  margin: 130px auto;
+  border-radius: 8px;
+}
+
+#loginBox > input,
+#signUpBox > input {
+  width: 275px;
+  height: 16px;
+  margin: 2px 0px 5px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 15px;
+  padding: 5px;
+}
+
+#page {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
