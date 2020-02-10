@@ -6,7 +6,7 @@ const todoHtml = (title, tasks, cardId) => {
       .map(
         task =>
           `<div id="${task.id}" class="content">` +
-          makeItemHtml(task.status, task.content, cardId) +
+          makeItemHtml(task.status, task.content, cardId, task.id) +
           '</div>'
       )
       .join('') +
