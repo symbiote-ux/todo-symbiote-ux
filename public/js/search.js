@@ -8,6 +8,7 @@ const searchByTitle = () => {
   const titleElements = Array.from(document.querySelectorAll('.titleText'));
   const searchedText = event.target.value;
   hideBox(titleElements);
+  
   titleElements.forEach(titleElement => {
     if (titleElement.value.includes(searchedText)) {
       titleElement.parentNode.parentElement.className = 'box';
