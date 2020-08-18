@@ -1,3 +1,3 @@
 # todo-symbiote-ux
 
-click:[https://symbiote-ux.github.io/todo-symbiote-ux/](https://todo-symbiote.herokuapp.com/)
+click:[Manage your Todo](https://todo-symbiote.herokuapp.com/)
